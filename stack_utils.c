@@ -1,9 +1,9 @@
 #include "utils.h"
 
-t_list *ft_lstnew(int input)
+t_stack *ft_lstnew(int input)
 {
-    t_list *node;
-    node = malloc(sizeof(t_list));
+    t_stack *node;
+    node = malloc(sizeof(t_stack));
     if(!node)
         return NULL;
     node->content = input;
@@ -11,7 +11,7 @@ t_list *ft_lstnew(int input)
     return node;
 }
 
-t_list *ft_lstlast(t_list *lst)
+t_stack *ft_lstlast(t_stack *lst)
 {
     if(!lst)
         return NULL;
@@ -20,17 +20,33 @@ t_list *ft_lstlast(t_list *lst)
     return lst;
 }
 
-void ft_lstadd_back(t_list **lst, t_list *new)
+void ft_lstadd_back(t_stack **lst, t_stack *new)
 {
-    t_list *curr;
+    t_stack *curr;
+    
     curr = *lst;
-    if(!lst)
-        return ;
-    if(!*lst)
+    if(*lst == NULL)
     {
         *lst = new;
         return ;
     }
-        curr = ft_lstlast(*lst);
-        curr->next = new;
+    else{
+
+    while (curr->next != NULL)
+        curr = curr->next;
+    curr->next = new;
+    }
+}
+
+int stack_size(t_stack *lst)
+{
+    int i = 0;
+    if(!lst)
+        return 0;
+    while(lst)
+    {
+        lst = lst->next;
+        i++;
+    }
+    return i;
 }
