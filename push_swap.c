@@ -26,66 +26,96 @@ void check(char *str)
         str++;
     }
 }
+int check_numbers(char *str)
+{
+    while(*str)
+    {
+        if(*str >= '0' && *str <= '9')
+            return 0;
+        else if(!(*str == ' ' || *str == '-' || *str == '+'))
+            {
+                printf("check numbers error");
+                return 1;
+            }
+            str++;
+    }
+    return -1;
 
-char *treat(char *str)
+}
+
+void just_spaces(char *str)
+{
+    while(*str == ' ' || (*str >= 9 && *str <= 13))
+        str++;
+    if(*str == '\0')
+        ft_error();
+}
+void check_range(char *str)
+{
+    long number = ft_atoi(str);
+    if(number > INT_MAX || number < INT_MIN)
+        ft_error();
+}
+
+// void addto(t_stack *stack_a, t_stack **new, char *str)
+// {
+    // new = ft_lstnew(ft_atoi(str));
+    // ft_lstadd_back(stack_a, new);
+
+ 
+// }
+
+void treat(t_stack **stack_a, char *str)
 {
     char **result;
     int i = 0;
-    t_stack *new;
-    int number = 0;
-    // t_stack *stack_a = NULL;
     result = ft_split(str, ' ');
+    t_stack *new;
     while (result[i])
     {
         new = NULL;
         check(result[i]);
-        number = ft_atoi(result[i]);
+        check_numbers(result[i]);
+        check_range(result[i]);
+        new = ft_lstnew(ft_atoi(result[i]));
+        ft_lstadd_back(stack_a, new);
+        check_is_duplicated(*stack_a, ft_atoi(result[i]));
         free(result[i]);
-        //i need to creat stacks and lis on them the number by lstaddback
-        //i need some work here
-        // ft_lstadd_back(void);
         i++;
     }
-    // int size = 0;
-    // t_stack *curr = stack_a;
-    // while (curr->next != NULL)
-    // {
-    //     size++;
-    //     printf("content -> %d\n", curr->content);
-    //     printf("size -> %d\n", size);
-    //     curr = curr->next;
-    // }
     free(result);
-    return result;
 }
 
 int main(int ac, char **av)
 {
-    // int end = ac - 1;
-    // t_stack **stack_test = NULL;
     if (ac == 1)
         return 0;
     if(!av[1][0])
     {
-        printf("Error\n");
         return 0;
     }
     int i = 1;
-    // int j = 0;
+    t_stack *stack_a;
     while (av[i])
-        treat(av[i++]);
-    t_stack *stack_a = NULL;
-    t_stack *new;
-    i = 1;
-    while(av[i])
     {
-        new = ft_lstnew(ft_atoi(av[i]));
-        ft_lstadd_back(&stack_a, new);
+        just_spaces(av[i]);
+        treat(&stack_a, av[i]);
         i++;
     }
-
     int size = stack_size(stack_a);
+
     printf("size == %d\n", size);
-    
+    while(stack_a)
+    {
+        printf("stack value -> %ld\n", stack_a->content);
+        stack_a = stack_a->next;
+    }
     return 0;
 }
+
+
+//after splitting the aguemtn I checked their range and if there is an error.
+//now i have to check if there is an argument duplicated or not
+
+//checking leaks
+//make the instructions

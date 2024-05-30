@@ -1,24 +1,25 @@
 #include "utils.h"
-long ft_atoi(char *str)
+int ft_atoi(char *str)
 {
-    long number = 0;
+    int number = 0;
     int sing = 0;
     while(*str == ' ' || (*str >= 9 && *str <= 13))
         str++;
     if(*str == '-' || *str == '+')
     {
-		if(*(str+1) == '\0')
-			ft_error();
-        else if(*str == '-')
+        if(*str == '-')
             sing = 1;
         str++;
     }
-    while((*str >= '0' && *str <= '9') || *str+1 == ' ')
+    while(*str >= '0' && *str <= '9')
     {
-		if(*str == ' ')
-			str++;
         number = number * 10 + *str - '0';
         str++;
+    }
+    if(*str)
+    {
+        write(1, "eror in args\n", 13);
+        exit(1);    
     }
     if(sing == 1)
         return number *= -1;
@@ -27,7 +28,7 @@ long ft_atoi(char *str)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*res;
+	char	*new;
 	int		len;
 	int		i;
 	int		j;
@@ -37,21 +38,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	res = (char *)malloc(len + 1);
-	if (!res)
+	new = malloc(len + 1);
+	if (!new)
 		return (NULL);
 	while (s1[i] != '\0')
 	{
-		res[i] = s1[i];
+		new[i] = s1[i];
 		i++;
 	}
 	while (s2[j] != '\0')
 	{
-		res[i + j] = s2[j];
+		new[i + j] = s2[j];
 		j++;
 	}
-	res[i + j] = '\0';
-	return (res);
+	new[i + j] = '\0';
+	return (new);
 }
 
 int check_is_valid(char **sres)

@@ -17,11 +17,11 @@
 
 typedef struct s_stack
 {
-    long content;
+    int content;
     struct s_stack *next;
 } t_stack;
 
-long ft_atoi(char *str);
+int ft_atoi(char *str);
 void ft_error(void);
 
 //lib_utils
@@ -35,8 +35,5 @@ t_stack *ft_lstnew(int content);
 t_stack *ft_lstlast(t_stack *lst);
 void ft_lstadd_back(t_stack **lst, t_stack *new);
 int stack_size(t_stack *lst);
-
-//check
-void check_is_duplicated(t_stack *stack, long number);
 
 #endif
