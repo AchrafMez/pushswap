@@ -20,6 +20,14 @@ t_stack *ft_lstlast(t_stack *lst)
     return lst;
 }
 
+void	ft_lstadd_front(t_stack **lst, t_stack *new)
+{
+	if (lst == NULL || new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}
+
 void ft_lstadd_back(t_stack **lst, t_stack *new)
 {
     t_stack *curr;
@@ -35,6 +43,7 @@ void ft_lstadd_back(t_stack **lst, t_stack *new)
     while (curr->next != NULL)
         curr = curr->next;
     curr->next = new;
+    curr->next->next = NULL;
     }
 }
 

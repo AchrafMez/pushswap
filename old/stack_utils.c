@@ -3,7 +3,7 @@
 t_stack *ft_lstnew(int input)
 {
     t_stack *node;
-    node = malloc(sizeof(t_stack));
+    node = (t_stack *)malloc(sizeof(t_stack));
     if(!node)
         return NULL;
     node->content = input;

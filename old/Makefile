@@ -3,7 +3,7 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 # LIBFT = libft/libft.a
-SRCS = push_swap.c utils.c lib_utils.c stack_utils.c
+SRCS = push_swap.c utils.c lib_utils.c stack_utils.c check.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME) $(LIBFT)
