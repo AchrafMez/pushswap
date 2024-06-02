@@ -73,6 +73,7 @@ void treat(t_stack **stack_a, char *str)
     char **result;
     int i = 0;
     result = ft_split(str, ' ');
+    static unsigned int index = 0;
     t_stack *new;
     while (result[i])
     {
@@ -82,8 +83,10 @@ void treat(t_stack **stack_a, char *str)
         check_range(result[i]);
         new = ft_lstnew(ft_atoi(result[i]));
         ft_lstadd_back(stack_a, new);
+        new->index = index;
         check_is_duplicated(*stack_a, ft_atoi(result[i]));
         free(result[i]);
+        index++;
         i++;
     }
     free(result);
@@ -115,7 +118,7 @@ int main(int ac, char **av)
         sort_three(&stack_a);
     else if((is_sorted(&stack_a) == 1) && stack_size(stack_a) == 5)
         sort_five(&stack_a, &stack_b);
-        
+    
     // sleep(3);
     // if(((is_sorted(&stack_a)) == 1) && (stack_size(stack_a) == 2))
         

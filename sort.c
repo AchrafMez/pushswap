@@ -55,22 +55,56 @@ void sort_three(t_stack **stack)
         rra(&*stack);
 }
 
+t_stack *get_low(t_stack **a)
+{
+    t_stack *tmp = *a;
+    t_stack *new_node;
+    new_node = tmp;
+    while(tmp)
+    {
+        if(new_node->content > tmp->content)
+            new_node->content = tmp->content;
+        tmp = tmp->next;
+    }
+    return new_node;
+}
+
+void update_indices(t_stack **stack)
+{
+    t_stack *tmp = *stack;
+    int idx = 0;
+    while(tmp)
+    {
+        tmp->index = idx;
+        tmp = tmp->next;
+        idx++;
+    }
+}
 void sort_five(t_stack **stack_a, t_stack **b)
 {
     t_stack *tmp = *stack_a;
-    long low = tmp->content;
+    t_stack *tmp2 = *stack_a;
+    // (void)b;
     // t_stack *new = tmp;
-    while(tmp->next)
+    // while(tmp)
+    // {
+    //     printf(" content before low ---> %ld\n", tmp->content);
+    //      tmp = tmp->next;
+    // }
+    t_stack *new_node = get_low(stack_a);
+    while((*stack_a)->content != new_node->content)
     {
-        if(low > tmp->content)
-            low = tmp->content;
-        tmp = tmp->next;
+        if(new_node->index >= 2)
+            ra(stack_a);
+        else if(new_node->index < 2)
+            rra(stack_a);
     }
-        printf("low value -> %ld\n", low);
-
-    pb(&tmp, b);
-        printf(".......................................");
-        printf("stack b value -> %ld\n", (*b)->content);
+        printf("new node value -> %ld\n", new_node->content);
+    // while (min != lst)
+    // min->index > 2 rra min->index <= 2 ra
+    // pb(&tmp, b);
+    //     printf(".......................................");
+    //     printf("stack b value -> %ld\n", (*b)->content);
 
         // printf("stack b value -> %ld\n", (*stack_b)->next->content);
 

@@ -18,6 +18,7 @@
 typedef struct s_stack
 {
     long content;
+    unsigned int index;
     struct s_stack *next;
 } t_stack;
 
