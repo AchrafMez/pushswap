@@ -1,9 +1,10 @@
 NAME = push_swap
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror
+# -fsanitize=address -g 
 # LIBFT = libft/libft.a
-SRCS = push_swap.c utils.c lib_utils.c stack_utils.c check.c instructions.c
+SRCS = push_swap.c utils.c lib_utils.c stack_utils.c check.c instructions.c sort.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME) $(LIBFT)

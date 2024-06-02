@@ -50,20 +50,23 @@ void just_spaces(char *str)
     if(*str == '\0')
         ft_error();
 }
+
+void check_len(char *str)
+{
+    int i = 0;
+    while (str[i] == '-' || str[i] == '+' || str[i] == '0')
+        i++;
+    str += i;
+    if (ft_strlen(str) > 10)
+        ft_error();
+}
 void check_range(char *str)
 {
+    check_len(str);
     long number = ft_atoi(str);
     if(number > INT_MAX || number < INT_MIN)
         ft_error();
 }
-
-// void addto(t_stack *stack_a, t_stack **new, char *str)
-// {
-    // new = ft_lstnew(ft_atoi(str));
-    // ft_lstadd_back(stack_a, new);
-
- 
-// }
 
 void treat(t_stack **stack_a, char *str)
 {
@@ -88,6 +91,10 @@ void treat(t_stack **stack_a, char *str)
 
 int main(int ac, char **av)
 {
+    t_stack *stack_a = NULL;
+    // t_stack *stack_b = NULL;
+
+
     if (ac == 1)
         return 0;
     if(!av[1][0])
@@ -95,21 +102,40 @@ int main(int ac, char **av)
         return 0;
     }
     int i = 1;
-    t_stack *stack_a;
     while (av[i])
     {
         just_spaces(av[i]);
         treat(&stack_a, av[i]);
         i++;
     }
-    int size = stack_size(stack_a);
+    //testing the instruction ;
+    int test = 0;
+    while(test++ <= 50)
+        rra(&stack_a);
 
-    printf("size == %d\n", size);
-    while(stack_a)
+    t_stack *curr = stack_a;
+    while (curr)
     {
-        printf("stack value -> %ld\n", stack_a->content);
-        stack_a = stack_a->next;
+        printf("stack a -> %ld\n", curr->content);
+        curr = curr->next;
     }
+
+    // t_stack *tb = stack_b;
+    // while (tb)
+    // {
+    //     printf("stack b -> %ld\n", tb->content);
+    //     tb = tb->next;
+    // }
+
+    // system("leaks -q push_swap");
+    // int size = stack_size(stack_a);
+
+    // printf("size == %d\n", size);
+    // while(stack_a)
+    // {
+    //     printf("stack value -> %ld\n", stack_a->content);
+    //     stack_a = stack_a->next;
+    // }
     return 0;
 }
 

@@ -92,8 +92,7 @@ void treat(t_stack **stack_a, char *str)
 int main(int ac, char **av)
 {
     t_stack *stack_a = NULL;
-    // t_stack *stack_b = NULL;
-
+    t_stack *stack_b = NULL;
 
     if (ac == 1)
         return 0;
@@ -108,15 +107,30 @@ int main(int ac, char **av)
         treat(&stack_a, av[i]);
         i++;
     }
-    //testing the instruction ;
-    int test = 0;
-    while(test++ <= 50)
-        rra(&stack_a);
+    
+    printf("stack size -> %d\n", stack_size(stack_a));
+    if((is_sorted(&stack_a) == 1) && stack_size(stack_a) == 2)
+        sort_two(&stack_a);
+    else if((is_sorted(&stack_a) == 1) && stack_size(stack_a) == 3)
+        sort_three(&stack_a);
+    else if((is_sorted(&stack_a) == 1) && stack_size(stack_a) == 5)
+        sort_five(&stack_a, &stack_b);
+        
+    // sleep(3);
+    // if(((is_sorted(&stack_a)) == 1) && (stack_size(stack_a) == 2))
+        
+    
+    // sort_two(&stack_a);
+    // is_sorted(&stack_a);
 
+    // pb(&stack_a, &stack_b);
+    // pb(&stack_a, &stack_b);
+    
+    
     t_stack *curr = stack_a;
     while (curr)
     {
-        printf("stack a -> %ld\n", curr->content);
+        printf("stack a after -> %ld\n", curr->content);
         curr = curr->next;
     }
 
@@ -126,6 +140,8 @@ int main(int ac, char **av)
     //     printf("stack b -> %ld\n", tb->content);
     //     tb = tb->next;
     // }
+
+
 
     // system("leaks -q push_swap");
     // int size = stack_size(stack_a);
@@ -145,3 +161,6 @@ int main(int ac, char **av)
 
 //checking leaks
 //make the instructions
+//i finish all the steps before and all is good
+
+//today i have  to create function to sort  numbers <= 5 and start in general algorithm 
