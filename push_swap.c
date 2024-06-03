@@ -110,14 +110,14 @@ int main(int ac, char **av)
         treat(&stack_a, av[i]);
         i++;
     }
-    
-    printf("stack size -> %d\n", stack_size(stack_a));
-    if((is_sorted(&stack_a) == 1) && stack_size(stack_a) == 2)
+    int stacksize = stack_size(stack_a);
+    printf("stack size -> %d\n", stacksize);
+    if((is_sorted(&stack_a) == 1) && stacksize == 2)
         sort_two(&stack_a);
-    else if((is_sorted(&stack_a) == 1) && stack_size(stack_a) == 3)
+    else if((is_sorted(&stack_a) == 1) && stacksize == 3)
         sort_three(&stack_a);
-    else if((is_sorted(&stack_a) == 1) && stack_size(stack_a) == 5)
-        sort_five(&stack_a, &stack_b);
+    else if((is_sorted(&stack_a) == 1) && stacksize <= 5)
+        sort_five(&stack_a, &stack_b, stacksize);
     
     // sleep(3);
     // if(((is_sorted(&stack_a)) == 1) && (stack_size(stack_a) == 2))

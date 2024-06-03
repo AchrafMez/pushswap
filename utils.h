@@ -56,6 +56,8 @@ void rrb(t_stack **b);
 int is_sorted(t_stack **stack);
 void sort_two(t_stack **stack);
 void sort_three(t_stack **stack);
-void sort_five(t_stack **stack_a, t_stack **b);
+void sort_five(t_stack **stack_a, t_stack **b, int size);
+void update_indices(t_stack **stack);
+void sort_five_helper(t_stack **stack_a, t_stack **stack_b);
 
 #endif
