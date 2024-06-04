@@ -73,6 +73,7 @@ void treat(t_stack **stack_a, char *str)
     char **result;
     int i = 0;
     result = ft_split(str, ' ');
+    static unsigned int index = 0;
     t_stack *new;
     while (result[i])
     {
@@ -82,8 +83,10 @@ void treat(t_stack **stack_a, char *str)
         check_range(result[i]);
         new = ft_lstnew(ft_atoi(result[i]));
         ft_lstadd_back(stack_a, new);
+        new->index = index;
         check_is_duplicated(*stack_a, ft_atoi(result[i]));
         free(result[i]);
+        index++;
         i++;
     }
     free(result);
@@ -92,8 +95,7 @@ void treat(t_stack **stack_a, char *str)
 int main(int ac, char **av)
 {
     t_stack *stack_a = NULL;
-    // t_stack *stack_b = NULL;
-
+    t_stack *stack_b = NULL;
 
     if (ac == 1)
         return 0;
@@ -108,15 +110,30 @@ int main(int ac, char **av)
         treat(&stack_a, av[i]);
         i++;
     }
-    //testing the instruction ;
-    int test = 0;
-    while(test++ <= 50)
-        rra(&stack_a);
+    int stacksize = stack_size(stack_a);
+    printf("stack size -> %d\n", stacksize);
+    if((is_sorted(&stack_a) == 1) && stacksize == 2)
+        sort_two(&stack_a);
+    else if((is_sorted(&stack_a) == 1) && stacksize == 3)
+        sort_three(&stack_a);
+    else if((is_sorted(&stack_a) == 1) && stacksize <= 5)
+        sort_five(&stack_a, &stack_b, stacksize);
+    
+    // sleep(3);
+    // if(((is_sorted(&stack_a)) == 1) && (stack_size(stack_a) == 2))
+        
+    
+    // sort_two(&stack_a);
+    // is_sorted(&stack_a);
 
+    // pb(&stack_a, &stack_b);
+    // pb(&stack_a, &stack_b);
+    
+    
     t_stack *curr = stack_a;
     while (curr)
     {
-        printf("stack a -> %ld\n", curr->content);
+        printf("stack a after -> %ld\n", curr->content);
         curr = curr->next;
     }
 
@@ -126,6 +143,8 @@ int main(int ac, char **av)
     //     printf("stack b -> %ld\n", tb->content);
     //     tb = tb->next;
     // }
+
+
 
     // system("leaks -q push_swap");
     // int size = stack_size(stack_a);
@@ -145,3 +164,6 @@ int main(int ac, char **av)
 
 //checking leaks
 //make the instructions
+//i finish all the steps before and all is good
+
+//today i have  to create function to sort  numbers <= 5 and start in general algorithm 

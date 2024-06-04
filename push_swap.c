@@ -73,20 +73,17 @@ void treat(t_stack **stack_a, char *str)
     char **result;
     int i = 0;
     result = ft_split(str, ' ');
-    static unsigned int index = 0;
-    t_stack *new;
     while (result[i])
     {
-        new = NULL;
+        t_stack *new = NULL;
         check(result[i]);
         check_numbers(result[i]);
         check_range(result[i]);
         new = ft_lstnew(ft_atoi(result[i]));
+        new->index = 0;
         ft_lstadd_back(stack_a, new);
-        new->index = index;
         check_is_duplicated(*stack_a, ft_atoi(result[i]));
         free(result[i]);
-        index++;
         i++;
     }
     free(result);
@@ -111,59 +108,26 @@ int main(int ac, char **av)
         i++;
     }
     int stacksize = stack_size(stack_a);
-    printf("stack size -> %d\n", stacksize);
+    // printf("stack size -> %d\n", stacksize);
     if((is_sorted(&stack_a) == 1) && stacksize == 2)
         sort_two(&stack_a);
     else if((is_sorted(&stack_a) == 1) && stacksize == 3)
         sort_three(&stack_a);
     else if((is_sorted(&stack_a) == 1) && stacksize <= 5)
         sort_five(&stack_a, &stack_b, stacksize);
-    
-    // sleep(3);
-    // if(((is_sorted(&stack_a)) == 1) && (stack_size(stack_a) == 2))
-        
-    
-    // sort_two(&stack_a);
-    // is_sorted(&stack_a);
+    else
+    {
+        int max = indexed(stack_a, stacksize);
+        radix(&stack_a, &stack_b, max);
+    }
 
-    // pb(&stack_a, &stack_b);
-    // pb(&stack_a, &stack_b);
-    
-    
     t_stack *curr = stack_a;
     while (curr)
     {
-        printf("stack a after -> %ld\n", curr->content);
+        printf("value %ld | index %d\n", curr->content, curr->index);
         curr = curr->next;
     }
 
-    // t_stack *tb = stack_b;
-    // while (tb)
-    // {
-    //     printf("stack b -> %ld\n", tb->content);
-    //     tb = tb->next;
-    // }
-
-
-
-    // system("leaks -q push_swap");
-    // int size = stack_size(stack_a);
-
-    // printf("size == %d\n", size);
-    // while(stack_a)
-    // {
-    //     printf("stack value -> %ld\n", stack_a->content);
-    //     stack_a = stack_a->next;
-    // }
+    system("leaks -q push_swap");
     return 0;
 }
-
-
-//after splitting the aguemtn I checked their range and if there is an error.
-//now i have to check if there is an argument duplicated or not
-
-//checking leaks
-//make the instructions
-//i finish all the steps before and all is good
-
-//today i have  to create function to sort  numbers <= 5 and start in general algorithm 

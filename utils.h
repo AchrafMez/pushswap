@@ -60,4 +60,14 @@ void sort_five(t_stack **stack_a, t_stack **b, int size);
 void update_indices(t_stack **stack);
 void sort_five_helper(t_stack **stack_a, t_stack **stack_b);
 
+//radix
+t_stack *get_max(t_stack *a);
+int digit_len(int max_num);
+void radix(t_stack **stack_a, t_stack **stack_b, int max);
+int count_bits(int number);
+
+int indexed(t_stack *stack, int stack_size);
+void sort_arr(int *arr, int stack_size);
+void idx_stack(t_stack *stack, int *arr, int stack_size);
+
 #endif

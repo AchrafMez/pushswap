@@ -18,6 +18,7 @@
 typedef struct s_stack
 {
     long content;
+    unsigned int index;
     struct s_stack *next;
 } t_stack;
 
@@ -41,14 +42,22 @@ void	ft_lstadd_front(t_stack **lst, t_stack *new);
 void check_is_duplicated(t_stack *stack, long number);
 
 //inst
-void sa(t_stack *stack_a);
-void sb(t_stack *stack_a);
-void ss(t_stack *stack_a, t_stack *stack_b);
+void sa(t_stack **stack_a);
+void sb(t_stack **stack_b);
+void ss(t_stack **stack_a, t_stack **stack_b);
 void pb(t_stack **a, t_stack **b);
 void pa(t_stack **a, t_stack **b);
 void ra(t_stack **a);
 void rb(t_stack **b);
 void rra(t_stack **a);
 void rrb(t_stack **b);
+
+//sort
+int is_sorted(t_stack **stack);
+void sort_two(t_stack **stack);
+void sort_three(t_stack **stack);
+void sort_five(t_stack **stack_a, t_stack **b, int size);
+void update_indices(t_stack **stack);
+void sort_five_helper(t_stack **stack_a, t_stack **stack_b);
 
 #endif

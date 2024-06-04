@@ -99,7 +99,6 @@ void rra(t_stack **a)
     new = tmp->next;
     while(tmp->next->next)
     {
-        printf(" one \n");
         tmp = tmp->next;
         new = tmp->next;
     }
