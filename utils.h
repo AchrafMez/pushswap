@@ -1,19 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amezioun <amezioun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/06 15:39:34 by amezioun          #+#    #+#             */
+/*   Updated: 2024/06/06 18:53:16 by amezioun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-// # include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 #include <stdbool.h>
 # include <limits.h>
-
-// typedef struct s_list
-// {
-//     int             content;
-//     struct s_list   *next;
-// } t_list;
 
 typedef struct s_stack
 {
@@ -41,7 +45,7 @@ void	ft_lstadd_front(t_stack **lst, t_stack *new);
 //check
 void check_is_duplicated(t_stack *stack, long number);
 
-//inst
+//instructions
 void sa(t_stack **stack_a);
 void sb(t_stack **stack_b);
 void ss(t_stack **stack_a, t_stack **stack_b);
@@ -66,8 +70,12 @@ int digit_len(int max_num);
 void radix(t_stack **stack_a, t_stack **stack_b, int stacksize);
 int count_bits(int number);
 
-void indexed(t_stack **stack, int stack_size);
+//index
+void stack_to_array(t_stack **stack, int stack_size);
 void sort_arr(int *arr, int stack_size);
 void idx_stack(t_stack **stack, int *arr, int stack_size);
+
+// 
+int args_check(int ac, char **av);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   instructions.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amezioun <amezioun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/06 18:40:17 by amezioun          #+#    #+#             */
+/*   Updated: 2024/06/06 18:43:29 by amezioun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 
 void sa(t_stack **stack_a)
@@ -14,7 +26,7 @@ void sa(t_stack **stack_a)
         curr->content = curr->next->content;
         curr->next->content = tmp;
     }
-    printf("sa\n");
+    write(2, "sa\n", 3);
 }
 
 void sb(t_stack **stack_b)
@@ -31,7 +43,7 @@ void sb(t_stack **stack_b)
         curr->content = curr->next->content;
         curr->next->content = tmp;
     }
-    printf("sb\n");
+    write(2, "sb\n", 3);
 }
 
 void ss(t_stack **stack_a, t_stack **stack_b)
@@ -40,7 +52,7 @@ void ss(t_stack **stack_a, t_stack **stack_b)
         return ;
     sa(stack_a);
     sb(stack_b);
-    printf("ss\n");
+    write(2, "ss\n", 3);
 }
 
 void pa(t_stack **a, t_stack **b)
@@ -52,7 +64,7 @@ void pa(t_stack **a, t_stack **b)
     ft_lstadd_front(a, new);
     *b = (*b)->next;
     free(tmp);
-    printf("pa\n");
+    write(1, "pa\n", 3);
 }
 
 void pb(t_stack **a, t_stack **b)
@@ -66,8 +78,9 @@ void pb(t_stack **a, t_stack **b)
     ft_lstadd_front(b, new);
     *a = (*a)->next;
     free(tmp);
-    printf("pb\n");
+    write(1, "pb\n", 3);
 }
+
 void ra(t_stack **a)
 {
     if(!(*a) || !((*a)->next))
@@ -76,7 +89,7 @@ void ra(t_stack **a)
 
     *a = (*a)->next;
     ft_lstadd_back(a, new);
-    printf("ra\n");
+    write(1, "ra\n", 3);
 }
 
 void rb(t_stack **b)
@@ -86,7 +99,7 @@ void rb(t_stack **b)
     t_stack *tmp = *b;
     *b = (*b)->next;
     ft_lstadd_back(b, tmp);
-    printf("rb\n");
+    write(1, "rb\n", 3);
 }
 
 void rra(t_stack **a)
@@ -104,27 +117,8 @@ void rra(t_stack **a)
     }
     tmp->next = NULL;
     ft_lstadd_front(a, new);
-    printf("rra\n");
+    write(1, "rra\n", 4);
 }
-// void rra(t_stack **a)
-// {
-//     t_stack *curr;
-//     t_stack *prev = NULL;
-
-//     curr = *a;
-//     while (curr->next)
-//     {
-//         prev = curr;
-//         curr = curr->next;
-//     }
-//     if (prev)
-//     {
-//         prev->next = NULL;
-//         ft_lstadd_front(a, curr);
-//     }
-//     printf("rra");
-// }
-
 
 void rrb(t_stack **b)
 {
@@ -140,9 +134,8 @@ void rrb(t_stack **b)
         new = tmp->next;
     }
     tmp->next = NULL;
-    // new = ft_lstnew(new->content);
     ft_lstadd_front(b, new);
-    printf("rrb\n");
+    write(1, "rrb\n", 4);
 }
 
 void rrr(t_stack **a, t_stack **b)
@@ -152,5 +145,5 @@ void rrr(t_stack **a, t_stack **b)
     else
         rra(a);
         rrb(b);
-    printf("rrr");
+    write(1, "rrr\n", 4);
 }

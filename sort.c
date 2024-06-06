@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amezioun <amezioun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/06 18:40:03 by amezioun          #+#    #+#             */
+/*   Updated: 2024/06/06 18:40:04 by amezioun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 
 //is sorted
@@ -12,16 +24,13 @@ int is_sorted(t_stack **stack)
     while(tmp->next)
     {
         if(cmp->content > tmp->next->content)
-        {
-            // printf("the stack is not sorted\n");
             return 1;
-        }
-        else{
+        else
+        {
             cmp = tmp->next;
             tmp = tmp->next;
         }
     }
-    // printf("the stack is sorted\n");
     return 0;
 }
 

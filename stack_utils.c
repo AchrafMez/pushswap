@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amezioun <amezioun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/06 18:39:58 by amezioun          #+#    #+#             */
+/*   Updated: 2024/06/06 18:50:02 by amezioun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 
 t_stack *ft_lstnew(int input, int index)
@@ -10,15 +22,6 @@ t_stack *ft_lstnew(int input, int index)
     node->index = index;
     node->next = NULL;
     return node;
-}
-
-t_stack *ft_lstlast(t_stack *lst)
-{
-    if(!lst)
-        return NULL;
-    while(lst)
-        lst = lst->next; 
-    return lst;
 }
 
 void	ft_lstadd_front(t_stack **lst, t_stack *new)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   index.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amezioun <amezioun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/06 18:40:21 by amezioun          #+#    #+#             */
+/*   Updated: 2024/06/06 18:40:22 by amezioun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 
 void idx_stack(t_stack **stack, int *arr, int stack_size)
@@ -19,6 +31,7 @@ void idx_stack(t_stack **stack, int *arr, int stack_size)
         curr = curr->next;
     }
 }
+
 void sort_arr(int *arr, int stack_size)
 {
     int i = 0;
@@ -40,7 +53,8 @@ void sort_arr(int *arr, int stack_size)
         i++;
     }
 }
-void indexed(t_stack **stack, int stack_size)
+
+void stack_to_array(t_stack **stack, int stack_size)
 {
     t_stack *curr;
     int *arr;

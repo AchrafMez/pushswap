@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amezioun <amezioun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/06 18:40:08 by amezioun          #+#    #+#             */
+/*   Updated: 2024/06/06 18:40:09 by amezioun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 
 void ft_error(void)
@@ -33,10 +45,7 @@ int check_numbers(char *str)
         if(*str >= '0' && *str <= '9')
             return 0;
         else if(!(*str == ' ' || *str == '-' || *str == '+'))
-            {
-                // printf("check numbers error");
                 return 1;
-            }
             str++;
     }
     return -1;
@@ -54,10 +63,10 @@ void just_spaces(char *str)
 void check_len(char *str)
 {
     int i = 0;
-    while (str[i] == '-' || str[i] == '+' || str[i] == '0')
+    while (str[i] == '-' || str[i] == '+' || str[i] == '0'  )
         i++;
     str += i;
-    if (ft_strlen(str) > 10)
+    if (ft_strlen(str) > 10) 
         ft_error();
 }
 void check_range(char *str)
@@ -85,22 +94,26 @@ void treat(t_stack **stack_a, char *str)
         free(result[i]);
         i++;
     }
-    
     free(result);
 }
-
+int args_check(int ac, char **av)
+{
+    (void) av;
+    if(ac == 1)
+        return 0;
+    else if(!av[1][0])
+        return 0;
+    else
+        return 1;
+}
 int main(int ac, char **av)
 {
     t_stack *stack_a = NULL;
     t_stack *stack_b = NULL;
 
-    if (ac == 1)
-        return 0;
-    if(!av[1][0])
-    {
-        return 0;
-    }
     int i = 1;
+    if(args_check(ac, av) == 0)
+        return 0;
     while (av[i])
     {
         just_spaces(av[i]);
@@ -108,26 +121,16 @@ int main(int ac, char **av)
         i++;
     }
     int stacksize = stack_size(stack_a);
-    // printf("stack size -> %d\n", stacksize);
     if((is_sorted(&stack_a) == 1) && stacksize == 2)
         sort_two(&stack_a);
     else if((is_sorted(&stack_a) == 1) && stacksize == 3)
         sort_three(&stack_a);
     else if((is_sorted(&stack_a) == 1) && stacksize <= 5)
         sort_five(&stack_a, &stack_b, stacksize);
-    else
+    else if(is_sorted(&stack_a) == 1)
     {
-        indexed(&stack_a, stacksize);
+        stack_to_array(&stack_a, stacksize);
         radix(&stack_a, &stack_b, stacksize);
     }
-
-    // t_stack *curr = stack_a;
-    // while (curr)
-    // {
-    //     printf("value %ld | index %d\n", curr->content, curr->index);
-    //     curr = curr->next;
-    // }
-
-    // system("leaks -q push_swap");
     return 0;
 }
