@@ -18,7 +18,7 @@
 typedef struct s_stack
 {
     long content;
-    unsigned int index;
+    int index;
     struct s_stack *next;
 } t_stack;
 
@@ -32,7 +32,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int	ft_strlen(const char *s);
 
 //stack_utils
-t_stack *ft_lstnew(int content);
+t_stack *ft_lstnew(int content, int index);
 t_stack *ft_lstlast(t_stack *lst);
 void ft_lstadd_back(t_stack **lst, t_stack *new);
 int stack_size(t_stack *lst);
@@ -61,13 +61,13 @@ void update_indices(t_stack **stack);
 void sort_five_helper(t_stack **stack_a, t_stack **stack_b);
 
 //radix
-t_stack *get_max(t_stack *a);
+int get_max(t_stack *a);
 int digit_len(int max_num);
-void radix(t_stack **stack_a, t_stack **stack_b, int max);
+void radix(t_stack **stack_a, t_stack **stack_b, int stacksize);
 int count_bits(int number);
 
-int indexed(t_stack *stack, int stack_size);
+void indexed(t_stack **stack, int stack_size);
 void sort_arr(int *arr, int stack_size);
-void idx_stack(t_stack *stack, int *arr, int stack_size);
+void idx_stack(t_stack **stack, int *arr, int stack_size);
 
 #endif

@@ -19,7 +19,7 @@ void sa(t_stack **stack_a)
 
 void sb(t_stack **stack_b)
 {
-      t_stack *curr;
+    t_stack *curr;
     long tmp;
     
     curr = *stack_b;
@@ -47,7 +47,7 @@ void pa(t_stack **a, t_stack **b)
 {
     if(!(*b))
         return ;
-    t_stack *new = ft_lstnew((*b)->content);
+    t_stack *new = ft_lstnew((*b)->content, (*b)->index);
     t_stack *tmp = *b;
     ft_lstadd_front(a, new);
     *b = (*b)->next;
@@ -61,7 +61,7 @@ void pb(t_stack **a, t_stack **b)
         return ;
 
     t_stack *tmp = *a;
-    t_stack *new = ft_lstnew(tmp->content);
+    t_stack *new = ft_lstnew(tmp->content, tmp->index);
 
     ft_lstadd_front(b, new);
     *a = (*a)->next;

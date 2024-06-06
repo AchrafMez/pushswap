@@ -2,7 +2,7 @@
 
 void ft_error(void)
 {
-    write(1, "error\n", 6);
+    write(2, "Error\n", 6);
     exit(1);
 }
 void check(char *str)
@@ -34,7 +34,7 @@ int check_numbers(char *str)
             return 0;
         else if(!(*str == ' ' || *str == '-' || *str == '+'))
             {
-                printf("check numbers error");
+                // printf("check numbers error");
                 return 1;
             }
             str++;
@@ -79,13 +79,13 @@ void treat(t_stack **stack_a, char *str)
         check(result[i]);
         check_numbers(result[i]);
         check_range(result[i]);
-        new = ft_lstnew(ft_atoi(result[i]));
-        new->index = 0;
+        new = ft_lstnew(ft_atoi(result[i]), 0);
         ft_lstadd_back(stack_a, new);
         check_is_duplicated(*stack_a, ft_atoi(result[i]));
         free(result[i]);
         i++;
     }
+    
     free(result);
 }
 
@@ -117,17 +117,17 @@ int main(int ac, char **av)
         sort_five(&stack_a, &stack_b, stacksize);
     else
     {
-        int max = indexed(stack_a, stacksize);
-        radix(&stack_a, &stack_b, max);
+        indexed(&stack_a, stacksize);
+        radix(&stack_a, &stack_b, stacksize);
     }
 
-    t_stack *curr = stack_a;
-    while (curr)
-    {
-        printf("value %ld | index %d\n", curr->content, curr->index);
-        curr = curr->next;
-    }
+    // t_stack *curr = stack_a;
+    // while (curr)
+    // {
+    //     printf("value %ld | index %d\n", curr->content, curr->index);
+    //     curr = curr->next;
+    // }
 
-    system("leaks -q push_swap");
+    // system("leaks -q push_swap");
     return 0;
 }

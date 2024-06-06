@@ -1,13 +1,12 @@
 #include "utils.h"
 
-void idx_stack(t_stack *stack, int *arr, int stack_size)
+void idx_stack(t_stack **stack, int *arr, int stack_size)
 {
-    t_stack *curr = stack;
-    int i = 0;
+    t_stack *curr = *stack;
 
     while(curr)
     {
-        i = 0;
+        int i = 0;
         while(i < stack_size)
         {
             if (curr->content == arr[i])
@@ -41,21 +40,21 @@ void sort_arr(int *arr, int stack_size)
         i++;
     }
 }
-int indexed(t_stack *stack, int stack_size)
+void indexed(t_stack **stack, int stack_size)
 {
     t_stack *curr;
     int *arr;
 
     arr = malloc(stack_size * sizeof(int));
-    curr = stack;
+    curr = *stack;
     int i = 0;
     while (curr)
     {
-        arr[i++] = curr->content;
+        arr[i] = curr->content;
+        i++;
         curr = curr->next;
     }
     sort_arr(arr, stack_size);
     idx_stack(stack, arr, stack_size);
     free(arr);
-    return i;
 }

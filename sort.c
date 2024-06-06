@@ -21,7 +21,7 @@ int is_sorted(t_stack **stack)
             tmp = tmp->next;
         }
     }
-    printf("the stack is sorted\n");
+    // printf("the stack is sorted\n");
     return 0;
 }
 
@@ -88,11 +88,6 @@ void sort_five_helper(t_stack **stack_a, t_stack **stack_b)
             rra(stack_a);
     }
     pb(stack_a, stack_b);
-    t_stack *tmp = *stack_a;
-    while(tmp){
-            printf("stack a content ->%ld \n", (tmp)->content);
-            (tmp) = (tmp)->next;
-        }
 }
 
 void sort_five(t_stack **stack_a, t_stack **b, int size)
@@ -112,19 +107,6 @@ void sort_five(t_stack **stack_a, t_stack **b, int size)
             pa(stack_a, b);
         }
 }
-
-/// radix
-// t_stack *get_max(t_stack *a)
-// {
-//     t_stack *tmp = a;
-//     int max = a->index;
-
-//     while (tmp)
-//     {
-//         if (tmp.)
-//         tmp = tmp->next;
-//     }
-// }
 
 int digit_len(int max_num)
 {
@@ -150,6 +132,7 @@ int count_bits(int number)
 void radix(t_stack **stack_a, t_stack **stack_b, int max)
 {
     int max_bits = count_bits(max);
+    
     int i = 0;
     while (i < max_bits)
     {
@@ -164,48 +147,7 @@ void radix(t_stack **stack_a, t_stack **stack_b, int max)
             j++;
         }
         while((*stack_b))
-        pa(stack_a, stack_b);
+            pa(stack_a, stack_b);
         i++;
     }
 }
-
-// void radix(t_stack **stack_a, t_stack **stack_b)
-// {
-//     // t_stack *tmpb = *stack_b;
-//     t_stack *tmp = *stack_a;
-//     t_stack *prin = *stack_b;
-//     t_stack *max = get_max(&tmp);
-//     printf("max in stack -> %ld\n", max->content);
-//     int len = digit_len(max->content);
-//     printf("len ->%d\n", len);
-//     int div = 1;
-//     while(len)
-//     {
-//         tmp = *stack_a;
-//         if(!tmp)
-//             break;
-//         while((tmp))
-//         {
-//             if((((tmp)->content / div) % 10) < 5)
-//             {
-//                 if(*stack_a)
-//                     pb(stack_a, stack_b);
-//             }
-//             else
-//                 ra(stack_a);
-//             tmp =tmp->next;
-//         }
-//         tmp = *stack_b;
-//         while((*stack_b))
-//             if(*stack_b)
-//                 pa(stack_a, stack_b);
-//             div *= 10;
-//         len--;
-//     }
-
-//     while(prin)
-//     {
-//         printf("prin -> content %ld\n", prin->content);
-//         prin = prin->next;
-//     }
-// }
